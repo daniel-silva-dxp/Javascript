@@ -1,12 +1,13 @@
-const sum = (a = 0, b = 0) => {
-  if (isNaN(a) || isNaN(b)) {
+const sum = (a, b) => {
+  if (typeof a !== "number" || typeof b !== "number") {
     throw new Error("O valor informado não é um número");
   }
   return a + b;
 };
 
 try {
-  sum("a", 10);
+  const val = sum("5", 10);
+  console.log(val);
 } catch (e) {
   console.log(`Erro: ${e.message}`);
 }
