@@ -9,16 +9,17 @@ const isNumber = (val) => {
 const average = function () {
   if (!getLength(arguments)) throw new Error("Insert a value");
 
-  let sum = 0;
+  let total = 0;
+  let media = 0;
 
   for (let i = 0; i < arguments.length; i++) {
     if (!isNumber(arguments[i]))
       throw new Error(`"${arguments[i]}": Not a number`);
 
-    sum += arguments[i];
+    total += arguments[i];
   }
-
-  return sum / arguments.length;
+  media = total / arguments.length;
+  return media;
 };
 
 try {
