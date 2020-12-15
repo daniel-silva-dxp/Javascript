@@ -1,4 +1,4 @@
-const getLength = function (arr) {
+const getLength = (arr) => {
   return arr.length !== 0 ? true : false;
 };
 
