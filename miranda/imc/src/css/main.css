@@ -106,13 +106,20 @@ a {
   justify-content: space-around;
   flex-direction: column;
 }
+.row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
 .form-group {
-  width: 30%;
+  width: 45%;
   height: 40px;
   position: relative;
   margin-bottom: 30px;
 }
-input[type="number"] {
+input[type="number"],
+input[type="text"] {
   border-style: solid;
   border-color: rgb(238, 236, 236);
   border-width: 2px;
@@ -123,7 +130,8 @@ input[type="number"] {
   padding: 0 15px;
   background-color: #fff;
 }
-input[type="number"]:focus {
+input[type="number"]:focus,
+input[type="text"]:focus {
   outline: none;
 }
 .form-control {
@@ -145,7 +153,9 @@ label {
   color: #777;
 }
 input[type="number"]:focus ~ label,
-input[type="number"]:valid ~ label {
+input[type="number"]:valid ~ label,
+input[type="text"]:focus ~ label,
+input[type="text"]:valid ~ label {
   top: -20px;
   font-size: 12px;
   color: #1e1e1e;
@@ -174,7 +184,9 @@ input[type="number"]:valid ~ label {
   right: 50%;
 }
 input[type="number"]:focus ~ .bar::before,
-input[type="number"]:focus ~ .bar::after {
+input[type="number"]:focus ~ .bar::after,
+input[type="text"]:focus ~ .bar::before,
+input[type="text"]:focus ~ .bar::after {
   width: 50%;
 }
 .btn:link,
@@ -301,4 +313,59 @@ input[type="number"]:focus ~ .bar::after {
   font-weight: 600;
   text-align: center;
   color: #fff;
+}
+
+.wrap-imc {
+  margin-top: 10px;
+  padding: 10px 80px;
+  height: 40px;
+  border-radius: 3px;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+  -webkit-box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.15);
+}
+.wrap-imc p {
+  font-family: "Roboto Mono";
+  font-size: 14px;
+  font-weight: 600;
+}
+.muito-baixo {
+  background-color: #1b1464;
+  color: #fff;
+}
+.medio-baixo {
+  background-color: #1e55a8;
+  color: #fff;
+}
+.baixo {
+  background-color: #3faff0;
+}
+.normal {
+  background-color: #35a64f;
+}
+.sobrepeso {
+  background-color: #fbdf3c;
+}
+.obesidade-um {
+  background-color: #f79d2d;
+}
+.obesidade-dois {
+  background-color: #cd4819;
+  color: #fff;
+}
+.morbida {
+  background-color: #9f020d;
+  color: #fff;
+}
+.fade-in {
+  animation: fadeIn 0.2s ease-out 0.1s 1 normal forwards;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100%;
+  }
 }
