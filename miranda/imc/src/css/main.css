@@ -15,7 +15,7 @@ html,
 body,
 .main {
   color: #1e1e1e;
-  background-color: #262626;
+  background-color: #f8f8f8;
   height: table;
 }
 body {
@@ -89,31 +89,39 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+}
+.title h1 {
+  font-size: 53px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 40px;
 }
 .form {
-  width: 80%;
+  width: 100%;
   height: auto;
   padding: 15px 0;
   display: flex;
   align-items: center;
   justify-content: space-around;
+  flex-direction: column;
 }
 .form-group {
-  width: 33.3333%;
+  width: 30%;
   height: 40px;
   position: relative;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 input[type="number"] {
   border-style: solid;
-  border-color: #ddd;
+  border-color: rgb(238, 236, 236);
   border-width: 2px;
   border-radius: 3px;
   outline: 0;
   width: 100%;
   height: 40px;
   padding: 0 15px;
-  background-color: #f8f8f8;
+  background-color: #fff;
 }
 input[type="number"]:focus {
   outline: none;
@@ -134,12 +142,13 @@ label {
 label {
   font-family: "Roboto Mono", monospace;
   font-weight: 600;
+  color: #777;
 }
 input[type="number"]:focus ~ label,
 input[type="number"]:valid ~ label {
   top: -20px;
   font-size: 12px;
-  color: #fff;
+  color: #1e1e1e;
 }
 .bar {
   position: relative;
@@ -153,7 +162,7 @@ input[type="number"]:valid ~ label {
   width: 0;
   bottom: 0px;
   position: absolute;
-  background: #b62827;
+  background: #1e1e1e;
   transition: 0.2s ease all;
   -moz-transition: 0.2s ease all;
   -webkit-transition: 0.2s ease all;
@@ -172,13 +181,13 @@ input[type="number"]:focus ~ .bar::after {
 .btn:visited {
   font-family: "Roboto Mono", monospace;
   font-weight: 600;
+  font-size: 14px;
   text-decoration: none;
   padding: 10px 40px;
   display: inline-block;
-  border-radius: 100px;
+  border-radius: 3px;
   transition: all 0.2s;
   position: relative;
-  margin-top: -20px;
 }
 
 .btn:hover {
@@ -191,9 +200,9 @@ input[type="number"]:focus ~ .bar::after {
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
-.btn-white {
-  background-color: #fff;
-  color: #777;
+.btn-dark {
+  background-color: #1e1e1e;
+  color: #fff;
 }
 
 .btn::after {
@@ -201,7 +210,7 @@ input[type="number"]:focus ~ .bar::after {
   display: inline-block;
   height: 100%;
   width: 100%;
-  border-radius: 100px;
+  border-radius: 3px;
   position: absolute;
   top: 0;
   left: 0;
@@ -209,8 +218,8 @@ input[type="number"]:focus ~ .bar::after {
   transition: all 0.4s;
 }
 
-.btn-white::after {
-  background-color: #b62827;
+.btn-dark::after {
+  background-color: #1e1e1e;
 }
 
 .btn:hover::after {
@@ -232,4 +241,64 @@ input[type="number"]:focus ~ .bar::after {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.error {
+  position: absolute;
+  top: 20px;
+  width: 70%;
+  height: 40px;
+  border-radius: 3px;
+  background-color: #ff5b48;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.55);
+  box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.35);
+  transform: translateY(-70px);
+  opacity: 0;
+}
+.erro-in {
+  animation: movedown 0.4s ease-in-out 0.1s 1 normal forwards;
+}
+.erro-out {
+  animation: moveup 0.4s ease-in-out 1 normal forwards;
+}
+@keyframes movedown {
+  0% {
+    transform: translateY(-70px);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(10px);
+    opacity: 0.4;
+  }
+  70% {
+    transform: translateY(15px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes moveup {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-70);
+    opacity: 0;
+  }
+}
+.error p {
+  font-family: "Roboto Mono";
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  color: #fff;
 }
