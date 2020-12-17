@@ -1,57 +1,75 @@
 const getElement = (element) => document.querySelector(element);
 const getAllElement = (element) => document.querySelectorAll(element);
 
-const isNotEmpty = (value) => (value || value <= 20 ? true : false);
+const isNotEmpty = () => {
+  let element = getAllElement("input");
+  element = Array.from(element);
 
-const isPositiveValue = (number) => (Math.sign(number) === 1 ? true : false);
+  return element.map((el) => {
+    return el.value
+      ? { name: el.name, value: el.value, isEmpty: true }
+      : { name: el.name, value: el.value, isEmpty: false };
+  });
+};
 
-const addClassElement = (element, className) =>
-  element.classList.add(className);
+const isPositiveValue = (num) => (Math.sign(num) === 1 ? true : false);
 
-const removeClassElement = (element, className) =>
-  element.classList.remove(className);
+const getWeightAndHeight = (arr) => {
+  return arr.filter((el) => {
+    if (el.name === "peso" || el.name === "altura") {
+      el.value = parseFloat(el.value);
+      return el;
+    }
+  });
+};
 
-const inputValueValidate = (element) => {
-  const input = getElement(element);
-  return input.value ? true : false;
+const murkup = (msg) => `<p>${msg}</p>`;
+
+const renderError = (value) => {
+  let err = getAllElement(`[data-for='${value}']`);
+  err = Array.from(err);
+
+  err[0].classList.remove("display-none");
+  err[0].classList.add("error");
+};
+
+const removeError = (value) => {
+  let err = getAllElement(`[data-for='${value}']`);
+  err = Array.from(err);
+
+  err[0].classList.add("display-none");
+  err[0].classList.remove("error");
 };
 
 const getBmi = (weight, height) => {
   const mt = height / 100;
   const bmi = weight / (mt * mt);
-  return bmi.toFixed(2);
+  return parseFloat(bmi.toFixed(2));
 };
 
-const murkupP = (msg) => `<p>${msg}</p>`;
+const run = () => {
+  const inputs = isNotEmpty();
+  inputs.map((input) => {
+    if (!input.isEmpty) {
+      renderError(input.name);
+    } else {
+      removeError(input.name);
+    }
+  });
+
+  const [weight, height] = getWeightAndHeight(inputs);
+  const { value: peso } = weight;
+  const { value: altura } = height;
+
+  console.log(getBmi(peso, altura));
+};
 
 const btn = getElement(".btn");
 
-const run = () => {
-  let input = getAllElement("input[type='number']");
-  const arr = Array.from(input);
-
-  console.log(arr);
-  for (let i in arr) {
-    let n = parseInt(arr[i].value);
-
-    if (!isNotEmpty(n)) throw new Error(`Preencha o campo ${arr[i].name}`);
-
-    if (!isPositiveValue(n))
-      throw new Error(`O ${arr[i].name} precisa ser positivo inteiro`);
-  }
-};
-
 btn.addEventListener("click", (e) => {
-  run();
+  try {
+    run();
+  } catch (e) {
+    console.log(e.message);
+  }
 });
-
-// addClassElement(error, "erro-in");
-//     error.innerHTML = `<p>Preencha o campo ${input.name}<p>`;
-//     setTimeout(() => {
-//       addClassElement(error, "erro-out");
-//       removeClassElement(error, "erro-in");
-//       setTimeout(() => {
-//         removeClassElement(error, "erro-in");
-//         removeClassElement(error, "erro-out");
-//       }, 100);
-//     }, 3000);
