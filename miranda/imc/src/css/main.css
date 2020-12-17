@@ -116,7 +116,17 @@ a {
   width: 45%;
   height: 40px;
   position: relative;
-  margin-bottom: 30px;
+  margin-bottom: 35px;
+}
+.form-group .display-none {
+  display: none;
+}
+.form-group .error {
+  display: block !important;
+  color: #cd4819;
+  font-family: "Roboto Mono";
+  font-size: 12px;
+  font-weight: 600;
 }
 input[type="number"],
 input[type="text"] {
@@ -201,22 +211,18 @@ input[type="text"]:focus ~ .bar::after {
   transition: all 0.2s;
   position: relative;
 }
-
 .btn:hover {
   transform: translateY(-3px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
-
 .btn:active {
   transform: translateY(-1px);
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
-
 .btn-dark {
   background-color: #1e1e1e;
   color: #fff;
 }
-
 .btn::after {
   content: "";
   display: inline-block;
@@ -229,16 +235,13 @@ input[type="text"]:focus ~ .bar::after {
   z-index: -1;
   transition: all 0.4s;
 }
-
 .btn-dark::after {
   background-color: #1e1e1e;
 }
-
 .btn:hover::after {
   transform: scaleX(1.4) scaleY(1.6);
   opacity: 0;
 }
-
 .btn-animated {
   animation-fill-mode: backwards;
 }
@@ -253,66 +256,6 @@ input[type="text"]:focus ~ .bar::after {
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-.error {
-  position: absolute;
-  top: 20px;
-  width: 70%;
-  height: 40px;
-  border-radius: 3px;
-  background-color: #ff5b48;
-  margin: 0 auto;
-  left: 0;
-  right: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  -webkit-box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.55);
-  box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.35);
-  transform: translateY(-70px);
-  opacity: 0;
-}
-.erro-in {
-  animation: movedown 0.4s ease-in-out 0.1s 1 normal forwards;
-}
-.erro-out {
-  animation: moveup 0.4s ease-in-out 1 normal forwards;
-}
-@keyframes movedown {
-  0% {
-    transform: translateY(-70px);
-    opacity: 0;
-  }
-  50% {
-    transform: translateY(10px);
-    opacity: 0.4;
-  }
-  70% {
-    transform: translateY(15px);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-@keyframes moveup {
-  0% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-70);
-    opacity: 0;
-  }
-}
-.error p {
-  font-family: "Roboto Mono";
-  font-size: 14px;
-  font-weight: 600;
-  text-align: center;
-  color: #fff;
 }
 
 .wrap-imc {
