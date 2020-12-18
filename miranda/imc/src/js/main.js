@@ -23,6 +23,30 @@ const getWeightAndHeight = (arr) => {
   });
 };
 
+const getBmi = (weight, height) => {
+  const mt = height / 100;
+  const bmi = weight / mt ** 2;
+  return parseFloat(bmi.toFixed(2));
+};
+
+function getNivelBmi(value) {
+  const nivel = [
+    { txt: "Abaixo do peso", class: "baixo" },
+    { txt: "Peso normal", class: "normal" },
+    { txt: "Sobrepeso", class: "sobrepeso" },
+    { txt: "Obesidade grau I", class: "obesidade-um" },
+    { txt: "Obesidade grau II", class: "obesidade-dois" },
+    { txt: "Obesidade grau III", class: "morbida" },
+  ];
+
+  if (value >= 39.9) return nivel[5];
+  if (value >= 34.9) return nivel[4];
+  if (value >= 29.9) return nivel[3];
+  if (value >= 24.9) return nivel[2];
+  if (value >= 18.5) return nivel[1];
+  if (value < 18.5) return nivel[0];
+}
+
 const murkup = (msg) => `<p>${msg}</p>`;
 
 const renderError = (value) => {
@@ -41,34 +65,38 @@ const removeError = (value) => {
   err[0].classList.remove("error");
 };
 
-const getBmi = (weight, height) => {
-  const mt = height / 100;
-  const bmi = weight / (mt * mt);
-  return parseFloat(bmi.toFixed(2));
+const renderBim = (name, bmi) => {
+  const el = getElement(".wrap-imc");
+  el.innerHTML = murkup(`${name}, seu IMC é: ${bmi} - ${getNivelBmi(bmi).txt}`);
+  el.classList.add("fade-in");
+  el.classList.add(getNivelBmi(bmi).class);
+
+  setTimeout(() => {
+    removeClass(el, "fade-in");
+    removeClass(el, getNivelBmi(bmi).class);
+  }, 5000);
 };
 
-const run = () => {
-  const inputs = isNotEmpty();
-  inputs.map((input) => {
-    if (!input.isEmpty) {
-      renderError(input.name);
-    } else {
-      removeError(input.name);
-    }
-  });
+const removeClass = (element, className) => element.classList.remove(className);
 
-  const [weight, height] = getWeightAndHeight(inputs);
-  const { value: peso } = weight;
-  const { value: altura } = height;
-
-  console.log(getBmi(peso, altura));
-};
-
-const btn = getElement(".btn");
-
-btn.addEventListener("click", (e) => {
+const form = getElement(".form");
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
   try {
-    run();
+    const inputs = isNotEmpty();
+    inputs.map((input) => {
+      if (!input.isEmpty) {
+        renderError(input.name);
+      } else {
+        removeError(input.name);
+      }
+    });
+
+    const [weight, height] = getWeightAndHeight(inputs);
+    const { value: peso } = weight;
+    const { value: altura } = height;
+
+    renderBim(inputs[0].value, getBmi(peso, altura));
   } catch (e) {
     console.log(e.message);
   }
