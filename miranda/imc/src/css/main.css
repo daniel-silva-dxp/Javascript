@@ -199,17 +199,18 @@ input[type="text"]:focus ~ .bar::before,
 input[type="text"]:focus ~ .bar::after {
   width: 50%;
 }
-.btn:link,
-.btn:visited {
+.btn {
   font-family: "Roboto Mono", monospace;
   font-weight: 600;
   font-size: 14px;
   text-decoration: none;
   padding: 10px 40px;
   display: inline-block;
+  border: none;
   border-radius: 3px;
   transition: all 0.2s;
   position: relative;
+  cursor: pointer;
 }
 .btn:hover {
   transform: translateY(-3px);
@@ -272,14 +273,6 @@ input[type="text"]:focus ~ .bar::after {
   font-family: "Roboto Mono";
   font-size: 14px;
   font-weight: 600;
-}
-.muito-baixo {
-  background-color: #1b1464;
-  color: #fff;
-}
-.medio-baixo {
-  background-color: #1e55a8;
-  color: #fff;
 }
 .baixo {
   background-color: #3faff0;
